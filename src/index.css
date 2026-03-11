@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --breakpoint-xs: 480px;
+
+  --color-brand-primary: #00FF00;
+  --color-brand-bg: #050505;
+  --color-brand-card: rgba(20, 20, 20, 0.6);
+  --color-brand-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-white font-sans antialiased selection:bg-brand-primary selection:text-black;
+  }
+}
+
+.glass-panel {
+  @apply bg-brand-card backdrop-blur-xl border border-brand-border rounded-3xl overflow-hidden;
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, transparent, var(--color-brand-primary), transparent);
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.3;
+}
+
+.mesh-gradient {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 255, 0, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(0, 100, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 0, 255, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(0, 255, 255, 0.1) 0px, transparent 50%);
+}
+
+.markdown-body {
+  @apply text-gray-300/90 leading-[1.8] space-y-8 text-[17px] break-words;
+  font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+}
+
+.markdown-body h1 { 
+  @apply text-4xl lg:text-5xl leading-[1.1] font-black tracking-tighter;
+  background: linear-gradient(to bottom right, #fff 30%, #00FF00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.markdown-body h2 { 
+  @apply text-2xl lg:text-3xl border-b border-white/5 pb-4 font-bold text-brand-primary/90;
+}
+
+.markdown-body h3 { 
+  @apply text-xl lg:text-2xl font-bold text-white/90;
+}
+
+.markdown-body p {
+  @apply opacity-90;
+}
+
+.markdown-body code {
+  @apply font-mono bg-white/10 px-2 py-0.5 rounded-md text-brand-primary text-[0.9em] font-medium break-all;
+}
+
+.markdown-body pre {
+  @apply bg-[#0D0D0D] p-6 md:p-8 rounded-[24px] border border-white/5 my-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.markdown-body ul {
+  @apply list-none space-y-4 ml-2;
+}
+
+.markdown-body ul li {
+  @apply relative pl-8;
+}
+
+.markdown-body ul li::before {
+  content: "→";
+  @apply absolute left-0 text-brand-primary font-bold opacity-80;
+}
+
+.markdown-body ol {
+  @apply list-decimal list-outside ml-8 space-y-4;
+}
+
+.markdown-body ol li::marker {
+  @apply text-brand-primary font-bold;
+}
+
+.markdown-body strong {
+  @apply text-brand-primary font-bold;
+}
+
+.markdown-body blockquote {
+  @apply border-l-2 border-brand-primary/30 pl-8 py-4 italic text-gray-400 bg-white/[0.02] rounded-r-2xl;
+}
+
+.markdown-body a {
+  @apply text-brand-primary underline underline-offset-4 decoration-brand-primary/30 hover:decoration-brand-primary transition-all;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+.input-glow:focus-within {
+  box-shadow: 0 0 40px rgba(0, 255, 0, 0.05);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
